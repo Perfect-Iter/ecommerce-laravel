@@ -1,0 +1,23 @@
+html, body {
+    font-family: 'Source';
+    font-size: 18px;
+    line-height: 1.5;
+    box-sizing: border-box;
+    margin: 0;
+    overflow-x: 0;
+    top: 0;
+    left: 0;
+  }
+
+  
+  .navbar {
+    background: #f4f4f4;
+
+  }
+ .badge{
+     background-color: red;
+ }
+ 
+ a{
+     text-decoration: none;
+ }
