@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Product;
+use App\Models\Category;
 use App\Http\Controllers\CartController;
 
 
@@ -17,9 +18,21 @@ class ShopController extends Controller
      */
     public function index()
     {
-        $products = Product::inRandomOrder()->get();
+        if(request()->category){
+            $product = Product::with('category')->whereHas('categories',function($query){
+                $query->where('slug', request()->category);
+            })-get();
+            $categories = Category::all();
+        } else{
+            $products = Product::inRandomOrder()->get();
+            $categories = Category::all();
+        }
 
-        return view('shop')->with('products', $products);
+
+        return view('shop')->with([
+            'products'=> $products,
+            'categories'=> $categories,
+        ]);
     }
 
     /**

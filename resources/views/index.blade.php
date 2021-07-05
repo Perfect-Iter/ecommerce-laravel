@@ -23,7 +23,7 @@
           
                   <ul class="list-bullet">
                     <li>{{$product->slug}}</li>
-                    <li>{{$product->type}}</li>
+                    <li>{{$product->size}}</li>
                     <li>{{$product->description}}</li>
                   </ul>
           

@@ -5,54 +5,29 @@
       <div class="card">
         <article class="card-group-item">
           <header class="card-header">
-            <h6 class="title">Brands </h6>
+            <button type="button" id="filter" class="btn  btn-outline-primary">Filter</button>
           </header>
           <div class="filter-content ">
             <div class="card-body">
-            <form  >
+
                   <div class="row">
-                      <div class="col-xs-12 col-sm-6 col-md-3">
+                    @foreach ($categories as $category)
+                        <div class="col-xs-12 col-sm-6 col-md-3">
                           <label class="form-check">
-                          <input class="form-check-input" type="checkbox" value="">
+                          <input name="category" class="form-check-input" type="checkbox" value="{{ $category->id }}"
+                          
+                          @if (in_array($category->id, explode(',', request()->input('filter.category'))))
+                            checked
+                          @endif
+                          >
                           <span class="form-check-label">
-                              soft drinks
+                              {{$category->name}}
                           </span>
                           </label> <!-- form-check.// -->
-                      </div>
-                      <div class="col-xs-12 col-sm-6 col-md-3">
-                          <label class="form-check">
-                          <input class="form-check-input" type="checkbox" value="">
-                          <span class="form-check-label">
-                              soft drinks
-                          </span>
-                          </label> <!-- form-check.// -->
-                      </div>
-                      <div class="col-xs-12 col-sm-6 col-md-3">
-                          <label class="form-check">
-                          <input class="form-check-input" type="checkbox" value="">
-                          <span class="form-check-label">
-                              soft drinks
-                          </span>
-                          </label> <!-- form-check.// -->
-                      </div>
-                      <div class="col-xs-12 col-sm-6 col-md-3">
-                          <label class="form-check">
-                          <input class="form-check-input" type="checkbox" value="">
-                          <span class="form-check-label">
-                              soft drinks
-                          </span>
-                          </label> <!-- form-check.// -->
-                      </div>
-                      <div class="col-xs-12 col-sm-6 col-md-3">
-                          <label class="form-check">
-                          <input class="form-check-input" type="checkbox" value="">
-                          <span class="form-check-label">
-                              soft drinks
-                          </span>
-                          </label> <!-- form-check.// -->
-                      </div>                                                                  
-                      </div>
-            </form>
+                        </div>                       
+                    @endforeach                                          
+                  </div>
+
       
             </div> <!-- card-body.// -->
           </div>
@@ -87,8 +62,8 @@
           
                   <ul class="list-bullet">
                     <li>{{$product->slug}}</li>
-                    <li>{{$product->type}}</li>
-                    <li>{{$product->description}}</li>
+                    <li>{{$product->size}}</li>
+                    <li>{!! $product->description !!}</li>
                   </ul>
           
                     <div class="form-group col-md">
@@ -97,6 +72,7 @@
                       {{Form::hidden('id', $product->id)}}
                       {{Form::hidden('name', $product->name)}}
                       {{Form::hidden('slug', $product->slug)}}
+                      {{Form::hidden('size', $product->size)}}
                       {{Form::hidden('price', $product->price)}}
    
                       {{Form::submit('Add to cart',['class'=>'btn  btn-outline-primary mb-2 ml-3'])}}
@@ -113,4 +89,31 @@
       </section>    
     @endforeach
     
+ @endsection
+
+ @section('extra-js')
+ <script>
+  function getIds(checkboxName) {
+      let checkBox = document.getElementsByName(checkboxName);
+      let ids = Array.prototype.slice.call(checkBoxes)
+                      .filter(ch => ch.checked==true)
+                      .map(ch => ch.value);
+      return ids;
+  }
+
+  function filterResults () {
+  
+      let catagoryId = getIds("catagory");
+
+      let href = 'shop/';
+
+      if(catagoryIds.length) {
+          href += '&filter[category]=' + catagoryIds;
+      }
+
+      document.location.href=href;
+  }
+
+  document.getElementById("filter").addEventListener("click", filterResults);
+</script>
  @endsection

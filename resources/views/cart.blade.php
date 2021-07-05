@@ -32,7 +32,7 @@
 				<div class="aside" class="img-wrap w-50"><img src="{{ asset('img/products/'.$item->model->slug.'.jpg') }}" class="w-25 img-sm img-thumbnail d-block"></div>
 				<figcaption class="info">
 					<a href="/shop/{{$item->model->slug}}" class="title text-dark">{{$item->model->name}}</a>
-					<p class="text-muted small">Matrix: {{$item->model->type}} <br> Brand: {{$item->model->slug}}</p>
+					<p class="text-muted small">Matrix: {{$item->model->size}} <br> Brand: {{$item->model->slug}}</p>
 				</figcaption>
 			</figure>
 		</td>

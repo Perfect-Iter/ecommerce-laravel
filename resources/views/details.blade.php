@@ -44,8 +44,8 @@
           <dt class="col-sm-3">Size</dt>
           <dd class="col-sm-9">Brown</dd>
         
-          <dt class="col-sm-3">type</dt>
-          <dd class="col-sm-9">{{$product->type}} </dd>
+          <dt class="col-sm-3">size</dt>
+          <dd class="col-sm-9">{{$product->size}} </dd>
         </dl>
         
         <hr>
@@ -67,6 +67,7 @@
                     {{Form::hidden('id', $product->id)}}
                     {{Form::hidden('name', $product->name)}}
                     {{Form::hidden('slug', $product->slug)}}
+                    {{Form::hidden('size', $product->size)}}
                     {{Form::hidden('price', $product->price)}}
  
                     {{Form::submit('Add to cart',['class'=>'btn  btn-outline-primary mb-2 ml-3'])}}
