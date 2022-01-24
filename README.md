@@ -1,1 +1,1 @@
-Ecommerce Web application made with laravel using blade template for the fronte end using a basic template i made. Currently working the ability to view items from the database and add to cart. The cart updates quantity dynamically an one is able to add and remove items. payment options to be added soon
+Ecommerce Web application made with laravel using blade template 
